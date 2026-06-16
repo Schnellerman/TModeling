@@ -1,4 +1,3 @@
-```markdown
 This section details how the structural zones isolate responsibilities and precisely how a user's chat message interacts with each security control in a sequential pipeline.
 
 ### 🛡️ Component Breakdown & Security Posture
@@ -13,7 +12,7 @@ This section details how the structural zones isolate responsibilities and preci
 ### 🔄 End-to-End Chat Message Data Flow
 
 When a user interacts with the AI-powered chat component (e.g., sending the message: *“Check the status of my order #555 based on the refund policy”*), the operational sequence flows through the architecture as follows:
-```
+
 ```mermaid
 sequenceDiagram
     autonumber
@@ -45,7 +44,7 @@ sequenceDiagram
     GoBE->>Nginx: 13. Send final HTTP 200 OK package
     Nginx-->>User: 14. Stream secure tokens cleanly into React UI
 ```
-```markdown
+
 #### Detailed Step-by-Step Breakdown:
 
 1.  **Ingress Request:** The user types a message in the chat interface. The **React SPA** packages the payload, injects the user's OAuth2/OIDC JWT token into the authorization header, and transmits it via HTTPS (TLS 1.3) to the **Nginx Ingress Proxy**.
@@ -59,4 +58,3 @@ sequenceDiagram
 9.  **Response Synthesis:** The verified data object is passed back up through the Orchestrator, which appends the real-world operational result to the LLM's active context window. The model processes the unified state and emits a clear, natural language final response text.
 10. **Defensive Output Sanitization:** Before delivering the generated text to the network interface, the Orchestrator processes the response against strict **Output Guardrails**. The code executes structural audits to verify that the LLM has not leaked internal system prompts, mistakenly revealed data fields containing PII, or hallucinated malicious Markdown reference links.
 11. **Egress Delivery:** The Orchestrator pushes the clean response string back to the **Go Backend**, which passes it through an advanced HTML/JS entity encoder (using Go's `bluemonday` engine) to dynamically scrub the output of any script injection vulnerabilities (XSS) or breaking markdown formats. The clean payload is delivered to Nginx, which streams the raw, safe message string directly to the **React SPA** presentation layer.
-```
