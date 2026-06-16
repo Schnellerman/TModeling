@@ -16,8 +16,8 @@
 This workbook serves as the primary security engineering artifact for auditing and hardening the Agentic RAG application. The scope of this threat model covers the semantic integrity of the AI engine, the security of server-side tool execution, and data-leakage boundaries within our Go-managed core services.
 
 ### 🔍 Scope Matrix
-* **IN SCOPE:** Go-based AI Orchestrator logic, Input/Output Guardrails, gRPC database interaction vectors, Vector DB semantic queries, and automated Tool Calling boundaries.
-* **EXCLUDED:** Cloud provider infrastructure-level zero-days (e.g., AWS/GCP hypervisor vulnerabilities), availability-based network layer DDoS.
+* **IN SCOPE:** Go-based AI Orchestrator logic, Input/Output Guardrails, gRPC database interaction vectors, Vector DB semantic queries, and automated Tool Calling boundaries. RAG.
+* **EXCLUDED:** Cloud provider infrastructure-level zero-days (e.g., AWS/GCP hypervisor vulnerabilities), availability-based network layer DDoS. Web Application.
 
 ---
 
