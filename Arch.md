@@ -1,3 +1,4 @@
+```mermaid
 graph TD
     %% Определение доверительных зон через подграфы
     
@@ -36,3 +37,4 @@ graph TD
     GoOrchestrator -- "5. gRPC / Semantic Search" --> VectorDB
     GoOrchestrator -- "6. HTTPS + API Key (Outbound)" --> ExternalLLM
     GoOrchestrator -- "7. Tool Execution (Verify Identity)" --> GoBackend
+```
